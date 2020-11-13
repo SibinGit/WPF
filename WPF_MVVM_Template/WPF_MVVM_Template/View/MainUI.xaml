@@ -1,0 +1,39 @@
+﻿<Window x:Class="WPF_MVVM_Template.View.MainUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MVVM_Template.View"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        Title="MainUI" Height="300" Width="300" Closing="FormClosing">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FormLoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid  Background="{Binding MainUIBackGround}">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBox  x:Name="txtName" Height="30" Width="100" Text="{Binding CustomerName, Mode=TwoWay, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[CustomerName]}"></TextBox>
+            <TextBox  x:Name="txtAmount" Height="30" Width="100" Text="{Binding Amount, Mode=TwoWay, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[Amount]}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Height="30" Width="100" Content="Green" Name="BtnClick1" Command="{Binding CommandBtnClick1}" CommandParameter="{Binding ElementName=BtnClick1,Path=Name}"></Button>
+            <Button Height="30" Width="100" Content="Blue" Name="BtnClick2" Command="{Binding CommandBtnClick2}" CommandParameter="{Binding ElementName=BtnClick2,Path=Name}"></Button>
+            <Button Height="30" Width="100" Content="Yellow" Name="BtnClick3" Command="{Binding CommandBtnClick3}" CommandParameter="{Binding ElementName=BtnClick3,Path=Name}"></Button>
+        </StackPanel>
+        
+    </Grid>
+</Window>
